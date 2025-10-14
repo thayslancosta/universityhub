@@ -1,0 +1,37 @@
+package br.com.unifacisa.universityhub.services;
+
+import br.com.unifacisa.universityhub.entities.Student;
+import br.com.unifacisa.universityhub.repositories.StudentRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class StudentService {
+
+    private final StudentRepository repository;
+
+    public StudentService (StudentRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<Student> listStudents() {
+        return repository.findAll();
+    }
+
+    public Student findStudentById (Long id){
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Student not found!"));
+    }
+
+    public Student saveStudent (Student student) {
+        return repository.save(student);
+    }
+
+    public void deleteStudentById (Long id){
+        if (!repository.existsById(id)) {
+            throw new EntityNotFoundException("Student not found!");
+        }
+        repository.deleteById(id);
+    }
+}

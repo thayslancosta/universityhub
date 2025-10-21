@@ -3,6 +3,7 @@ package br.com.unifacisa.universityhub.services;
 import br.com.unifacisa.universityhub.entities.Student;
 import br.com.unifacisa.universityhub.repositories.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +26,12 @@ public class StudentService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Student not found!"));
     }
 
+    @Transactional
     public Student saveStudent (Student student) {
         return repository.save(student);
     }
 
+    @Transactional
     public void deleteStudentById (Long id){
         if (!repository.existsById(id)) {
             throw new EntityNotFoundException("Student not found!");

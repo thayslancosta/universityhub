@@ -16,7 +16,7 @@ public class StudentCardService {
     public StudentCardService(StudentCardRepository studentCardRepository) {
         this.repository = studentCardRepository;
     }
-    
+
     public List<StudentCard> listStudentCards() {
         return repository.findAll();
     }

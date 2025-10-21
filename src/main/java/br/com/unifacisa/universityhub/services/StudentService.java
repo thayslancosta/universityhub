@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+
 public class StudentService {
 
     private final StudentRepository repository;
 
-    public StudentService (StudentRepository repository) {
-        this.repository = repository;
+    public StudentService (StudentRepository rep) {
+        this.repository = rep;
     }
 
     public List<Student> listStudents() {

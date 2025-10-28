@@ -3,12 +3,13 @@ package br.com.unifacisa.universityhub.services;
 import br.com.unifacisa.universityhub.entities.Teacher;
 import br.com.unifacisa.universityhub.repositories.TeacherRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class TeacherService {
 
     private final TeacherRepository repository;
@@ -26,8 +27,8 @@ public class TeacherService {
     }
 
     @Transactional
-    public void saveTeacher(Teacher teacher){
-        repository.save(teacher);
+    public Teacher saveTeacher(Teacher teacher){
+        return repository.save(teacher);
     }
 
     @Transactional

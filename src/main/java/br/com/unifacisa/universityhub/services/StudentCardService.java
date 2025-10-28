@@ -3,12 +3,14 @@ package br.com.unifacisa.universityhub.services;
 import br.com.unifacisa.universityhub.entities.StudentCard;
 import br.com.unifacisa.universityhub.repositories.StudentCardRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class StudentCardService {
 
     private final StudentCardRepository repository;
@@ -22,12 +24,13 @@ public class StudentCardService {
     }
 
     public StudentCard findStudentCardById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Student card not found!"));
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Student card not found!"));
     }
 
     @Transactional
-    public void saveStudentCard(StudentCard studentCard) {
-        repository.save(studentCard);
+    public StudentCard saveStudentCard(StudentCard studentCard) {
+        return repository.save(studentCard);
     }
 
     @Transactional

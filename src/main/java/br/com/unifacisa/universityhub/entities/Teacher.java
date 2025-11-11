@@ -29,4 +29,10 @@ public class Teacher implements Serializable {
     @OneToMany(mappedBy = "teacher")
     @JsonManagedReference
     private List<Course> courses;
+
+    //Construtor para teste de persist
+    public Teacher(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

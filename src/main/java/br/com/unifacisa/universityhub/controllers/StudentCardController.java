@@ -17,22 +17,23 @@ public class StudentCardController {
 
     private final StudentCardService service;
 
+    //Injeção de dependência via construtor da classe service
     public StudentCardController(StudentCardService service){
         this.service = service;
     }
-
+    //Requisição GET para listar todos os objetos da classe
     @GetMapping
     public ResponseEntity<List<StudentCard>> listStudentCards(){
         List<StudentCard> list = service.listStudentCards();
         return ResponseEntity.ok(list);
     }
-
+    //Requisição GET para encontrar objeto pelo ID
     @GetMapping(value="{id}")
     public ResponseEntity<StudentCard> findStudentCardById(@PathVariable Long id){
         StudentCard studentCard = service.findStudentCardById(id);
         return ResponseEntity.ok(studentCard);
     }
-
+    //Requisição POST para criação de objeto
     @PostMapping
     public ResponseEntity<StudentCard> createStudentCard(@RequestBody StudentCard studentCard){
         studentCard = service.saveStudentCard(studentCard);

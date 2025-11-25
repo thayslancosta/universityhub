@@ -24,7 +24,7 @@ public class TeacherController {
     @GetMapping
     public ResponseEntity<List<Teacher>> listTeachers() {
         List<Teacher> list = service.listTeachers();
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok().body(list);
     }
 
     //Requisição GET para encontrar objeto pelo ID

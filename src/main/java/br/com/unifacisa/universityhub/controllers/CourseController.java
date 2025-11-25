@@ -24,7 +24,7 @@ public class CourseController {
     @GetMapping
     public ResponseEntity <List<Course>> listCourses () {
         List<Course> list = service.listCourses();
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok().body(list);
     }
     //Requisição GET para encontrar objeto pelo ID
     @GetMapping(value = "/{id}")

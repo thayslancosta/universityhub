@@ -41,4 +41,41 @@ public class CourseService {
         repository.deleteById(id);
     }
 
+    public List<Course> listAll () {
+        List<Course> list = repository.findAll();
+        return list;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

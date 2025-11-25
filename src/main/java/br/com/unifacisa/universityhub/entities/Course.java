@@ -1,10 +1,12 @@
 package br.com.unifacisa.universityhub.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @Entity
 @Getter
@@ -24,6 +26,10 @@ public class Course implements Serializable {
 
     @Column(nullable = false)
     private String title;
+
+    //Data de início do curso
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    private Instant startingDate;
 
     //Relacionamento ManyToOne com carregamento de dados sob demanda lado opcional que contém a FK
     @ManyToOne(fetch = FetchType.LAZY)

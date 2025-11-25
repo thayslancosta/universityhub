@@ -23,7 +23,7 @@ public class StudentController {
     @GetMapping
     public ResponseEntity<List<Student>> listStudents(){
         List<Student> list = service.listStudents();
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok().body(list);
     }
     //Requisição GET para encontrar objeto pelo ID
     @GetMapping(value = "/{id}")
